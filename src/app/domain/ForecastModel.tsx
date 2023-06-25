@@ -21,7 +21,7 @@ export default class ForecastModel implements IWeatherModel {
         return toDayName(dt);
     }
 
-    getForecastData(): any {
+    getRawData(): any {
         return this.data;
     }
 

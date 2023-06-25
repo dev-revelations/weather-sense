@@ -12,6 +12,14 @@ export default class WeatherModel implements IWeatherModel {
         this.data = weatherData;
     }
 
+    getId(): number {
+        return this.data?.id;
+    }
+
+    getName(): string {
+        return this.data?.name;
+    }
+
     getDayNumber(): number {
         const dt = this.data?.current?.dt;
         return toDayNumber(dt);
@@ -21,7 +29,7 @@ export default class WeatherModel implements IWeatherModel {
         return toDayName(dt);
     }
 
-    getForecastData(): any {
+    getRawData(): any {
         return this.data;
     }
 
