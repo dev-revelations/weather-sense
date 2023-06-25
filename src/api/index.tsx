@@ -1,8 +1,8 @@
 import axios from "axios";
-import IWeatherAPI from "./IWeatherAPI";
+import IWeatherAPI from "./IWeatherApi";
 
 
-export default class OpenWeatherApi implements IWeatherAPI {
+export default class OpenWeatherApi implements IWeatherApi {
 
     private readonly API_KEY;
     private readonly BASE = `https://api.openweathermap.org`;
