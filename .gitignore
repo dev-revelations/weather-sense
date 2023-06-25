@@ -14,6 +14,8 @@ pids
 
 # Dependency directories
 node_modules/
+public/
+build/
 
 # Optional npm cache directory
 .npm
@@ -29,6 +31,7 @@ node_modules/
 
 # dotenv environment variables file
 .env
+.env.local
 
 # Misc
 .DS_Store
