@@ -5,11 +5,15 @@ import IWeatherApi from '../api/IWeatherApi';
 import OpenWeatherApi from '../api';
 import config from '../config';
 import { TypeLocation } from '../types';
+import IStorage from '../device/storage/IStorage';
+import LocalStorage from '../device/storage/LocalStorage';
 
 const sliceName = 'weathers';
 
 // The API needs to be injected by a dependency injection mechanism
 const weatherApi: IWeatherApi = new OpenWeatherApi(config.weatherApiKey);
+// The local storage needs to be injected by a dependency injection mechanism
+const localStorage: IStorage = new LocalStorage();
 
 type WeatherSliceState = {
     loading: 'idle' | 'pending' | 'succeeded' | 'failed';
@@ -39,17 +43,32 @@ export const fetchWeather = createAsyncThunk(
     }
 );
 
+export const loadLocalCurrentWeatherIdx = createAsyncThunk(
+    `${sliceName}/loadLocalCurrentWeatherIdx`,
+    async () => {
+        return await localStorage.loadCurrentIndexAsync();
+    }
+);
+
+export const loadLocalWeathers = createAsyncThunk(
+    `${sliceName}/loadLocalWeathers`,
+    async (_, thunkAPI) => {
+        thunkAPI.dispatch(loadLocalCurrentWeatherIdx());
+        return await localStorage.loadWeathersAsync();
+    }
+);
+
 const weatherSlice = createSlice({
     name: sliceName,
     initialState,
     reducers: {},
     extraReducers: builder => {
 
-        const pendingReducer = (state) => {
+        const fetchPending = (state) => {
             state.loading = 'pending';
         };
 
-        const fulfilledReducer = (state, action: PayloadAction<any>) => {
+        const fetchFulfilled = (state, action: PayloadAction<any>) => {
             state.loading = 'succeeded',
                 state.error = '';
             const weather = new WeatherModel(action.payload);
@@ -61,16 +80,34 @@ const weatherSlice = createSlice({
                 state.currentWeatherIdx = index;
                 state.weathers[index] = weather;
             }
+
+            try {
+                localStorage.saveWeathersAsync(state.weathers);
+                localStorage.saveCurrentIndexAsync(state.currentWeatherIdx);
+            } catch (ex) { }
         };
 
-        const failedReducer = (state, action) => {
+        const fetchFailed = (state, action) => {
             state.loading = 'failed';
             state.error = action.error.message || 'Something went wrong';
         };
 
-        builder.addCase(fetchWeather.pending, pendingReducer);
-        builder.addCase(fetchWeather.fulfilled, fulfilledReducer);
-        builder.addCase(fetchWeather.rejected, failedReducer);
+        const loadIndexFulfilled = (state, action: PayloadAction<any>) => {
+            state.currentWeatherIdx = Number(action.payload);
+        };
+
+        const loadWeathersFulfilled = (state, action: PayloadAction<any>) => {
+            state.weathers = action.payload;
+
+            console.log(action.payload);
+        };
+
+        builder.addCase(fetchWeather.pending, fetchPending);
+        builder.addCase(fetchWeather.fulfilled, fetchFulfilled);
+        builder.addCase(fetchWeather.rejected, fetchFailed);
+
+        builder.addCase(loadLocalCurrentWeatherIdx.fulfilled, loadIndexFulfilled);
+        builder.addCase(loadLocalWeathers.fulfilled, loadWeathersFulfilled);
     }
 });
 
