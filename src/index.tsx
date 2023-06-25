@@ -18,7 +18,7 @@ import './css/icons.css';
 import './css/app.scss';
 
 // Import App Component
-import App from './app';
+import App from './app/app';
 
 
 // Init F7 React Plugin
