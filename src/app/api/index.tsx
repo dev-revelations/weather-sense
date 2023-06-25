@@ -20,65 +20,39 @@ export default class OpenWeatherApi implements IWeatherApi {
 
     async byLocationName(locationName: string): Promise<any> {
 
-        // const currentWeatherUrl = `${this.BASE}${this.CURRENT_WEATHER}?${this.PARAM_UNITS_METRIC}&q=${locationName}&${this.PARAM_APP_ID}`;
+        const currentWeatherUrl = `${this.BASE}${this.CURRENT_WEATHER}?${this.PARAM_UNITS_METRIC}&q=${locationName}&${this.PARAM_APP_ID}`;
 
-        // const currentWeather = (await axios.get(currentWeatherUrl)).data;
+        const currentWeather = (await axios.get(currentWeatherUrl)).data;
 
-        // const { lat, lon } = currentWeather.coord;
+        const { lat, lon } = currentWeather.coord;
 
-        // const dailyForecastUrl = `${this.BASE}${this.ONE_CALL}?${this.PARAM_UNITS_METRIC}&${this.PARAM_EXCLUDE}&lon=${lon}&lat=${lat}&${this.PARAM_APP_ID}`;
+        const dailyForecastUrl = `${this.BASE}${this.ONE_CALL}?${this.PARAM_UNITS_METRIC}&${this.PARAM_EXCLUDE}&lon=${lon}&lat=${lat}&${this.PARAM_APP_ID}`;
 
-        // const dailyForecast = (await axios.get(dailyForecastUrl)).data;
+        const dailyForecast = (await axios.get(dailyForecastUrl)).data;
 
-        // console.log(dailyForecast.daily.map((item: any) => {
-
-        //     const d = new Date(item.dt * 1000);
-
-        //     // Sunday - Saturday : 0 - 6
-        //     let day = d.getDay();
-        //     // in JS Date Sun=0, in ISO 8601 Sun=7
-        //     day = day === 0 ? 7 : day;
-
-        //     return [item.dt, day];
-
-        // }));
-
-        // return {
-        //     ...dailyForecast,
-        //     ...currentWeather
-        // };
+        return {
+            ...dailyForecast,
+            ...currentWeather
+        };
 
         return mockData;
     }
 
     async byGeolocation(lat: number, lon: number): Promise<any> {
 
-        // const currentWeatherUrl = `${this.BASE}${this.CURRENT_WEATHER}?${this.PARAM_UNITS_METRIC}&lon=${lon}&lat=${lat}&${this.PARAM_APP_ID}`;
+        const currentWeatherUrl = `${this.BASE}${this.CURRENT_WEATHER}?${this.PARAM_UNITS_METRIC}&lon=${lon}&lat=${lat}&${this.PARAM_APP_ID}`;
 
-        // const currentWeather = (await axios.get(currentWeatherUrl)).data;
+        const currentWeather = (await axios.get(currentWeatherUrl)).data;
 
 
-        // const dailyForecastUrl = `${this.BASE}${this.ONE_CALL}?${this.PARAM_UNITS_METRIC}&${this.PARAM_EXCLUDE}&lon=${lon}&lat=${lat}&${this.PARAM_APP_ID}`;
+        const dailyForecastUrl = `${this.BASE}${this.ONE_CALL}?${this.PARAM_UNITS_METRIC}&${this.PARAM_EXCLUDE}&lon=${lon}&lat=${lat}&${this.PARAM_APP_ID}`;
 
-        // const dailyForecast = (await axios.get(dailyForecastUrl)).data;
+        const dailyForecast = (await axios.get(dailyForecastUrl)).data;
 
-        // console.log(dailyForecast.daily.map((item: any) => {
-
-        //     const d = new Date(item.dt * 1000);
-
-        //     // Sunday - Saturday : 0 - 6
-        //     let day = d.getDay();
-        //     // in JS Date Sun=0, in ISO 8601 Sun=7
-        //     day = day === 0 ? 7 : day;
-
-        //     return [item.dt, day];
-
-        // }));
-
-        // return {
-        //     ...dailyForecast,
-        //     ...currentWeather
-        // };
+        return {
+            ...dailyForecast,
+            ...currentWeather
+        };
 
         return mockData;
     }

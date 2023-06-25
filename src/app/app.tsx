@@ -4,12 +4,13 @@ import {
   App,
   View
 } from 'framework7-react';
+import { Provider } from 'react-redux';
 
 import routes from './routes';
 import { Framework7Parameters } from 'framework7/types';
-import OpenWeatherApi from './api';
-import WeatherModel from './domain/WeatherModel';
+
 import config from './config';
+import store from './store';
 
 const MyApp = () => {
   const device = getDevice();
@@ -39,18 +40,12 @@ const MyApp = () => {
 
   } as Framework7Parameters;
 
-  useEffect(() => {
-    const api = new OpenWeatherApi(config.weatherApiKey);
-    api.byGeolocation(51.5085, -0.1257).then(data => {
-      const weather = new WeatherModel(data);
-      // console.log(weather.listDailyForecast()[2].getTemperature());
-    });
-  }, []);
-
   return (
-    <App {...f7params}>
-      <View main className="safe-areas view-init" url="/" />
-    </App>
+    <Provider store={store}>
+      <App {...f7params}>
+        <View main className="safe-areas view-init" url="/" />
+      </App>
+    </Provider>
   );
 };
 export default MyApp;
