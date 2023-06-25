@@ -1,5 +1,5 @@
 import axios from "axios";
-import IWeatherAPI from "./IWeatherApi";
+import IWeatherApi from "./IWeatherAPI";
 
 
 export default class OpenWeatherApi implements IWeatherApi {
