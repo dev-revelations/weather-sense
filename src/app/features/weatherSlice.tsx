@@ -4,7 +4,7 @@ import WeatherModel from '../domain/WeatherModel';
 import IWeatherApi from '../api/IWeatherApi';
 import OpenWeatherApi from '../api';
 import config from '../config';
-import { TypeGeolocation } from '../types';
+import { TypeLocation } from '../types';
 
 const sliceName = 'weathers';
 
@@ -29,8 +29,8 @@ const initialState: WeatherSliceState = {
 
 export const fetchWeather = createAsyncThunk(
     `${sliceName}/fetchByLocationName`,
-    async (location: string | TypeGeolocation, thunkAPI) => {
-        if(typeof location === 'string') {
+    async (location: TypeLocation, thunkAPI) => {
+        if (typeof location === 'string') {
             return await weatherApi.byLocationName(location);
         } else {
             const { lon, lat } = location;
