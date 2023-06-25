@@ -15,7 +15,7 @@ export default class LocalStorage implements IStorage {
     async saveCurrentIndexAsync(index: string): Promise<void> {
         await Preferences.set({
             key: this.KEY_CURRENT_IDX,
-            value: index
+            value: String(index)
         });
     }
     async loadCurrentIndexAsync(): Promise<string> {

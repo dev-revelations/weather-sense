@@ -97,9 +97,7 @@ const weatherSlice = createSlice({
         };
 
         const loadWeathersFulfilled = (state, action: PayloadAction<any>) => {
-            state.weathers = action.payload;
-
-            console.log(action.payload);
+            state.weathers = [...action.payload];
         };
 
         builder.addCase(fetchWeather.pending, fetchPending);
