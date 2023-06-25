@@ -26,20 +26,16 @@ const initialState: WeatherSliceState = {
     currentWeatherIdx: -1
 };
 
-export const fetchByLocationName = createAsyncThunk(
-    `${sliceName}/fetchByLocationName`,
-    async (location: string, thunkAPI) => {
-        const response = await weatherApi.byLocationName(location);
-        return response;
-    }
-);
 
-export const fetchByGeolocation = createAsyncThunk(
-    `${sliceName}/fetchByGeolocation`,
-    async (geoLocation: TypeGeolocation, thunkAPI) => {
-        const { lon, lat } = geoLocation;
-        const response = await weatherApi.byGeolocation(lat, lon);
-        return response;
+export const fetchWeather = createAsyncThunk(
+    `${sliceName}/fetchByLocationName`,
+    async (location: string | TypeGeolocation, thunkAPI) => {
+        if(typeof location === 'string') {
+            return await weatherApi.byLocationName(location);
+        } else {
+            const { lon, lat } = location;
+            return await weatherApi.byGeolocation(lat, lon);
+        }
     }
 );
 
@@ -72,14 +68,9 @@ const weatherSlice = createSlice({
             state.error = action.error.message || 'Something went wrong';
         };
 
-        builder.addCase(fetchByLocationName.pending, pendingReducer);
-        builder.addCase(fetchByLocationName.fulfilled, fulfilledReducer);
-        builder.addCase(fetchByLocationName.rejected, failedReducer);
-
-        builder.addCase(fetchByGeolocation.pending, pendingReducer);
-        builder.addCase(fetchByGeolocation.fulfilled, fulfilledReducer);
-        builder.addCase(fetchByGeolocation.rejected, failedReducer);
-
+        builder.addCase(fetchWeather.pending, pendingReducer);
+        builder.addCase(fetchWeather.fulfilled, fulfilledReducer);
+        builder.addCase(fetchWeather.rejected, failedReducer);
     }
 });
 
