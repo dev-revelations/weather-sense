@@ -29,7 +29,7 @@ export default class WeatherModel implements IWeatherModel {
         return toDayName(dt);
     }
 
-    getRawData(): any {
+    getWeatherData(): any {
         return this.data;
     }
 

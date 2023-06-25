@@ -2,7 +2,7 @@ import { TypeForecastTemperature, TypeForecastWeather } from "./types";
 
 
 export default interface IWeatherModel {
-    getRawData(): any;
+    getWeatherData(): any;
     getTemperature(): number | TypeForecastTemperature;
     getHumidity(): number;
     getDescription(): string;
