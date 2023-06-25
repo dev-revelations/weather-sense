@@ -12,7 +12,7 @@ const sliceName = 'weathers';
 const weatherApi: IWeatherApi = new OpenWeatherApi(config.weatherApiKey);
 
 type WeatherSliceState = {
-    lodaing: 'idle' | 'pending' | 'succeeded' | 'failed';
+    loading: 'idle' | 'pending' | 'succeeded' | 'failed';
     error: string;
     weathers: WeatherModel[];
     currentWeatherIdx: number;
@@ -20,7 +20,7 @@ type WeatherSliceState = {
 
 
 const initialState: WeatherSliceState = {
-    lodaing: 'idle',
+    loading: 'idle',
     error: '',
     weathers: [],
     currentWeatherIdx: -1
@@ -46,11 +46,11 @@ const weatherSlice = createSlice({
     extraReducers: builder => {
 
         const pendingReducer = (state) => {
-            state.lodaing = 'pending';
+            state.loading = 'pending';
         };
 
         const fulfilledReducer = (state, action: PayloadAction<any>) => {
-            state.lodaing = 'succeeded',
+            state.loading = 'succeeded',
                 state.error = '';
             const weather = new WeatherModel(action.payload);
             const index = state.weathers.findIndex((item: WeatherModel) => item.getName() === weather.getName());
@@ -64,7 +64,7 @@ const weatherSlice = createSlice({
         };
 
         const failedReducer = (state, action) => {
-            state.lodaing = 'failed';
+            state.loading = 'failed';
             state.error = action.error.message || 'Something went wrong';
         };
 
