@@ -47,8 +47,8 @@ export default class ForecastModel implements IWeatherModel {
         return Math.round(temp.day);
     }
 
-    getTemperatureWithSymbol(): string {
-        return `${this.getTemperature()}°C`;
+    getTemperatureWithSymbol(tempType: undefined | 'min' | 'max' = undefined): string {
+        return `${this.getTemperature(tempType)}°C`;
     }
 
     getHumidity(): number {
@@ -56,7 +56,7 @@ export default class ForecastModel implements IWeatherModel {
     }
 
     getDescription(): string {
-        return this.data?.weather?.description;
+        return this.data?.weather[0]?.description;
     }
 
     getIcon(): string {

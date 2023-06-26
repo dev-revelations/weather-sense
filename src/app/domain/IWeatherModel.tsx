@@ -1,10 +1,11 @@
-import { TypeForecastTemperature, TypeForecastWeather } from "./types";
+import { TypeForecastTemperature, TypeForecastWeather, TypeTemperature } from "./types";
+
 
 
 export default interface IWeatherModel {
     getRawData(): any;
-    getTemperature(tempType?: undefined | 'min' | 'max'): number;
-    getTemperatureWithSymbol(): string;
+    getTemperature(tempType?: TypeTemperature): number;
+    getTemperatureWithSymbol(tempType?: TypeTemperature): string;
     getHumidity(): number;
     getDescription(): string;
     getWeather(): TypeForecastWeather;
