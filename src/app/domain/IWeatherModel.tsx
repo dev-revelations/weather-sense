@@ -3,7 +3,7 @@ import { TypeForecastTemperature, TypeForecastWeather } from "./types";
 
 export default interface IWeatherModel {
     getRawData(): any;
-    getTemperature(): number | TypeForecastTemperature;
+    getTemperature(tempType?: undefined | 'min' | 'max'): number;
     getTemperatureWithSymbol(): string;
     getHumidity(): number;
     getDescription(): string;
@@ -11,5 +11,6 @@ export default interface IWeatherModel {
     getWindSpeed(): number;
     getDayNumber(): number;
     getDayName(): string;
+    getFormatedDay(): string;
     getIcon(): string;
 }

@@ -10,7 +10,7 @@ export default class WeatherModel implements IWeatherModel {
 
     constructor(weatherData: any) {
         this.data = weatherData;
-    }
+    }    
 
     getId(): number {
         return this.data?.id;
@@ -24,16 +24,21 @@ export default class WeatherModel implements IWeatherModel {
         const dt = this.data?.current?.dt;
         return toDayNumber(dt);
     }
+
     getDayName(): string {
         const dt = this.data?.current?.dt;
-        return toDayName(dt);
+        return toDayName(dt)?.substring(0, 3);
     }
 
     getRawData(): any {
         return this.data;
     }
 
-    getTemperature(): number {
+    getFormatedDay(): string {
+        throw new Error("Method not implemented.");
+    }
+
+    getTemperature(tempType: undefined | 'min' | 'max' = undefined): number {
         return Math.round(this.data?.current?.temp);
     }
 

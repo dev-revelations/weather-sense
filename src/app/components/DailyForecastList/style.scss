@@ -1,0 +1,21 @@
+.forecast-list {
+
+    .forecast-item-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        
+        .forecast-item-temp-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+            .forecast-temp-icon {
+                width: 42px;
+                height: 42px;
+            }
+        }
+    }
+}
