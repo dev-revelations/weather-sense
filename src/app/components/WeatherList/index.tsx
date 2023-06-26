@@ -16,7 +16,7 @@ const WeatherList = (props: WeatherListProps) => {
             {weatherList && weatherList.map((weather, index) => (
                 <Button className="location-weather-button" onClick={() => onClick(weather.getName())} key={weather.getName()}>
                     <div className="location-weather-item">
-                        <span>{weather.getName()}</span><span>{weather.getTemperature()} C</span> <img src={weather.getIcon()} />
+                        <span>{weather.getName()}</span><span>{weather.getTemperatureWithSymbol()}</span> <img src={weather.getIcon()} />
                     </div>
                 </Button>
             ))}
