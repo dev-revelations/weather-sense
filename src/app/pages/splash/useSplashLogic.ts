@@ -22,7 +22,7 @@ const useSplashLogic = (f7router: any) => {
             reloadCurrent: true
         };
 
-        if (!currentWeather && geolocationReady && (loading === 'idle' || loading === 'succeeded')) {
+        if (!currentWeather && geolocationReady && loading === 'idle') {
             if (currentLocation) {
                 fetchWeather((location as unknown) as TypeGeolocation);
             } else {
@@ -30,7 +30,7 @@ const useSplashLogic = (f7router: any) => {
                     f7router.navigate(searchScreen, navigateOptions);
                 }, 2000);
             }
-        } else if (currentWeather && (loading === 'idle' || loading === 'succeeded')) {
+        } else if (currentWeather && loading === 'idle') {
             fetchWeather(currentWeather.getName());
         }
 

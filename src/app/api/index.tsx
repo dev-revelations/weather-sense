@@ -30,10 +30,13 @@ export default class OpenWeatherApi implements IWeatherApi {
 
         const dailyForecast = (await axios.get(dailyForecastUrl)).data;
 
+        console.log('by location');
+
         return {
             ...dailyForecast,
             ...currentWeather
         };
+
 
         return mockData;
     }
@@ -49,10 +52,13 @@ export default class OpenWeatherApi implements IWeatherApi {
 
         const dailyForecast = (await axios.get(dailyForecastUrl)).data;
 
+        console.log('by geolocation');
+
         return {
             ...dailyForecast,
             ...currentWeather
         };
+
 
         return mockData;
     }
