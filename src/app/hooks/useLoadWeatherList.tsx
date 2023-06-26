@@ -25,8 +25,7 @@ const useLoadWeatherList = (loadImmediately = true) => {
     }
 
     return {
-        loadLocalWeatherList: loadLocalList,
-        currentWeather: weather
+        loadLocalWeatherList: loadLocalList
     };
 };
 

@@ -4,11 +4,13 @@ import useLoadWeatherList from '../../hooks/useLoadWeatherList';
 import useFetchWeather from '../../hooks/useFetchWeather';
 import useGeolocation from '../../hooks/useGeolocation';
 import { TypeGeolocation } from "../../types";
+import useCurrentWeather from "../../hooks/useCurrentWeather";
 
 
 const useSplashLogic = (f7router: any) => {
 
-    const { currentWeather } = useLoadWeatherList();
+    useLoadWeatherList();
+    const currentWeather = useCurrentWeather();
     const { loading, error, fetchWeather } = useFetchWeather();
     const { currentLocation, geolocationReady } = useGeolocation();
 
