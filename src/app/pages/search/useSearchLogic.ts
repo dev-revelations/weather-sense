@@ -2,7 +2,7 @@ import { useAppSelector } from "../../hooks/storeHooks";
 import useFetchWeather from "../../hooks/useFetchWeather";
 
 
-const useSeachLogic = (f7router: any) => {
+const useSearchLogic = (f7router: any) => {
 
     const { weathers } = useAppSelector(state => state.weathers);
 
@@ -24,4 +24,4 @@ const useSeachLogic = (f7router: any) => {
 
 };
 
-export default useSeachLogic;
+export default useSearchLogic;

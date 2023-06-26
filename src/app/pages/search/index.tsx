@@ -3,7 +3,7 @@ import SearchBar from "../../components/SearchBar";
 import WeatherList from "../../components/WeatherList";
 import { getSafeAreaClass } from "../../utils/f7utils";
 import './style.scss';
-import useSeachLogic from "./useSearchLogic";
+import useSearchLogic from "./useSearchLogic";
 
 type SearchPageProps = {
     f7route: any;
@@ -14,7 +14,7 @@ const SearchPage = (props: SearchPageProps) => {
 
     const { f7route, f7router } = props;
 
-    const { weathers, handleSearch } = useSeachLogic(f7router);
+    const { weathers, handleSearch } = useSearchLogic(f7router);
 
     return (
         <Page name="search" className={getSafeAreaClass()}>
