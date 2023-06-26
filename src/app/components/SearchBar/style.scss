@@ -1,0 +1,17 @@
+.search-block {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+
+    .search-input {
+        flex: 1;
+        min-height: 1rem;
+        border: none;
+        border-radius: 0.3rem;
+        padding-left: 1rem;
+        font-size: 0.8rem;
+        background: none;
+    }
+}
