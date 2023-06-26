@@ -1,17 +1,21 @@
-import { Block } from "framework7-react";
+import { Block, Button, Icon } from "framework7-react";
 import WeatherModel from "../../domain/WeatherModel";
 
 import './style.scss';
 
 type WeatherBoxProps = {
     model: WeatherModel;
+    onSearchClick: () => void;
 };
 
-const WeatherBox = ({ model }: WeatherBoxProps) => {
+const WeatherBox = ({ model, onSearchClick }: WeatherBoxProps) => {
 
     return (
         <Block strong inset className="weather-box">
-            <span className="city-title">{model?.getName()}</span>
+            <Button className="btn-search" onClick={() => onSearchClick()}><Icon f7="search" /></Button>
+            <span className="city-title">
+                {model?.getName()}
+            </span>
             <div className='weather-box-temp-wrapper'>
                 <img src={model?.getIcon()} />
                 <span>{model?.getTemperatureWithSymbol()}</span>

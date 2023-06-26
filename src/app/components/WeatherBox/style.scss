@@ -9,6 +9,13 @@
     color: white;
     text-transform: capitalize;
 
+    .btn-search {
+        color: white;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
     .city-title {
         font-size: 1.5rem;
         font-weight: 400;
