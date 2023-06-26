@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { getDevice } from 'framework7/lite/bundle';
 import {
   App,
@@ -9,7 +8,6 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import { Framework7Parameters } from 'framework7/types';
 
-import config from './config';
 import store from './store';
 
 const MyApp = () => {
@@ -42,8 +40,9 @@ const MyApp = () => {
 
   return (
     <Provider store={store}>
-      <App {...f7params}>
-        <View main className="safe-areas view-init" url="/" />
+      <App {...f7params} className={device.ios ? 'safe-area-top' : ''}>
+        <View main url="/"/>
+        
       </App>
     </Provider>
   );

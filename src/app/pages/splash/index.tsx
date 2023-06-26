@@ -17,7 +17,7 @@ const SplashScreen = (props: SplashProps) => {
     useSplashLogic(f7router);
 
     return (
-        <Page name="splash" className="safe-areas">
+        <Page name="splash">
             <div className='splash-container'>
                 <img src='../../../assets/logo.svg' />
                 <h1>WeatherSense</h1>

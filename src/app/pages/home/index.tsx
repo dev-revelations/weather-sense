@@ -1,11 +1,22 @@
 import React from 'react';
 import {
-  Page
+  Block,
+  BlockTitle,
+  Page, PageContent
 } from 'framework7-react';
 
-const HomePage = () => (
-  <Page name="home">
+const HomePage = () => {
 
-  </Page>
-);
+  
+
+  return (
+    <Page name="home">
+      <PageContent>
+        <Block strong inset>
+          <BlockTitle large>Liverpool</BlockTitle>
+        </Block>
+      </PageContent>
+    </Page>
+  );
+};
 export default HomePage;
