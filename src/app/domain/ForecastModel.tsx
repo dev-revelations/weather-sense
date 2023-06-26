@@ -66,7 +66,7 @@ export default class ForecastModel implements IWeatherModel {
     }
 
     getWeather(): TypeForecastWeather {
-        return this.data?.weather;
+        return this.data?.weather[0];
     }
 
     getWindSpeed(): number {

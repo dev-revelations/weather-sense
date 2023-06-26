@@ -1,0 +1,13 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: 500;
+
+    background-color: rgba(77, 168, 209, 0.3);
+}

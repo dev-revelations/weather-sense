@@ -10,6 +10,8 @@ export const DAY_NAMES: { [key: number]: string; } = Object.freeze({
     7: "Sunday"
 });
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 
 export const toDate = (dt: number) => {
     return new Date(dt * 1000);
@@ -28,4 +30,9 @@ export const toDayNumber = (dt: number): number => {
 export const toDayName = (dt: number): string => {
     const day = toDayNumber(dt);
     return DAY_NAMES[day];
+};
+
+export const toMonthName = (dt: number): string => {
+    const date = toDate(dt);
+    return months[date.getMonth()];
 };
