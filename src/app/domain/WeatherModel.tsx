@@ -7,10 +7,12 @@ import { TypeForecastWeather } from "./types";
 export default class WeatherModel implements IWeatherModel {
 
     private readonly data: any;
+    private readonly dailyList: IWeatherModel[];
 
     constructor(weatherData: any) {
         this.data = weatherData;
-    }    
+        this.dailyList = weatherData.daily?.map((forecast: any) => new ForecastModel(forecast));
+    }
 
     getId(): number {
         return this.data?.id;
@@ -19,6 +21,15 @@ export default class WeatherModel implements IWeatherModel {
     getName(): string {
         return this.data?.name;
     }
+
+    getDailyForecastList(): Array<IWeatherModel> {
+        return this.dailyList;
+    }
+
+
+    /* 
+        Interface Implementations
+    */
 
     getDayNumber(): number {
         const dt = this.data?.current?.dt;
@@ -43,7 +54,7 @@ export default class WeatherModel implements IWeatherModel {
     }
 
     getTemperatureWithSymbol(): string {
-        return `${this.getTemperature()}°C`;        
+        return `${this.getTemperature()}°C`;
     }
 
     getHumidity(): number {
@@ -66,11 +77,6 @@ export default class WeatherModel implements IWeatherModel {
 
     getWindSpeed(): number {
         return this.data?.current?.wind_speed;
-    }
-
-
-    listDailyForecast(): Array<IWeatherModel> {
-        return this.data?.daily?.map((forecast: any) => new ForecastModel(forecast));
     }
 
 }
