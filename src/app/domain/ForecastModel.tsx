@@ -29,6 +29,10 @@ export default class ForecastModel implements IWeatherModel {
         return this.data?.temp;
     }
 
+    getTemperatureWithSymbol(): string {
+        return `${this.getTemperature()}°C`;        
+    }
+
     getHumidity(): number {
         return this.data?.humidity;
     }

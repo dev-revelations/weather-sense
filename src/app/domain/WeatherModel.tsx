@@ -37,12 +37,16 @@ export default class WeatherModel implements IWeatherModel {
         return Math.round(this.data?.current?.temp);
     }
 
+    getTemperatureWithSymbol(): string {
+        return `${this.getTemperature()}°C`;        
+    }
+
     getHumidity(): number {
         return this.data?.current?.humidity;
     }
 
     getDescription(): string {
-        return this.data?.current?.weather?.description;
+        return this.data?.current?.weather[0]?.description;
     }
 
     getIcon(): string {
