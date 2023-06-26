@@ -15,3 +15,5 @@ export type TypeForecastTemperature = {
     eve: number,
     morn: number;
 };
+
+export type TypeTemperature = undefined | 'min' | 'max';
