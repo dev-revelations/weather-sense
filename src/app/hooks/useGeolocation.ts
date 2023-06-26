@@ -6,16 +6,25 @@ import AppGeolocation from '../device/geolocation/AppGeolocation';
 
 const useGeolocation = () => {
     const [currentLocation, setCurrentLocation] = useState<TypeGeolocation | undefined>(undefined);
+    const [geolocationReady, setGeolocationReady] = useState<boolean>(false);
 
     useEffect(() => {
-        (new AppGeolocation()).getCurrentLocationAsync()
-            .then(location => {
+        const getLocation = async () => {
+            try {
+                const location = await (new AppGeolocation()).getCurrentLocationAsync();
+
                 setCurrentLocation(location);
-            });
+                setGeolocationReady(true);
+            } catch (ex) { }
+        };
+
+        getLocation();
+
     }, []);
 
     return {
-        currentLocation
+        currentLocation,
+        geolocationReady
     };
 };
 
