@@ -38,7 +38,9 @@ export default class ForecastModel implements IWeatherModel {
     }
 
     getIcon(): string {
-        return this.data?.weather?.icon;
+        const icon = this.data?.weather[0]?.icon;
+        const path = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        return path;
     }
 
     getWeather(): TypeForecastWeather {

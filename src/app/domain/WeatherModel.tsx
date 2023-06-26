@@ -34,7 +34,7 @@ export default class WeatherModel implements IWeatherModel {
     }
 
     getTemperature(): number {
-        return this.data?.current?.temp;
+        return Math.round(this.data?.current?.temp);
     }
 
     getHumidity(): number {
@@ -46,7 +46,9 @@ export default class WeatherModel implements IWeatherModel {
     }
 
     getIcon(): string {
-        return this.data?.current?.weather?.icon;
+        const icon = this.data?.current?.weather[0]?.icon;
+        const path = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        return path;
     }
 
     getWeather(): TypeForecastWeather {
