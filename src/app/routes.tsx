@@ -4,6 +4,7 @@ import HomePage from './pages/home';
 
 import NotFoundPage from './pages/404';
 import SplashScreen from './pages/splash';
+import SearchPage from './pages/search';
 
 var routes = [
   {
@@ -13,6 +14,10 @@ var routes = [
   {
     path: '/weather',
     component: HomePage,
+  },
+  {
+    path: '/search',
+    component: SearchPage,
   },
   {
     path: '(.*)',

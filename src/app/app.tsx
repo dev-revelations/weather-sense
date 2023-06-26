@@ -40,8 +40,8 @@ const MyApp = () => {
 
   return (
     <Provider store={store}>
-      <App {...f7params} className={device.ios ? 'safe-area-top' : ''}>
-        <View main url="/"/>
+      <App {...f7params}>
+        <View main url="/" mdSwipeBack={device.ios} iosSwipeBack={device.ios} />
         
       </App>
     </Provider>
