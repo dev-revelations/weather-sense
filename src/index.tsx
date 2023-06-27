@@ -11,8 +11,6 @@ import Framework7React, { f7ready, f7 } from 'framework7-react';
 // Import Framework7 Styles
 import 'framework7/css/bundle';
 
-import capacitorApp from './js/capacitor-app';
-
 // Import Icons and App Custom Styles
 import './css/icons.css';
 import './css/app.scss';
@@ -27,12 +25,3 @@ Framework7.use(Framework7React);
 // Mount React App
 const root = createRoot(document.getElementById('app') as HTMLElement);
 root.render(React.createElement(App));
-
-f7ready(() => {
-
-    // Init capacitor APIs (see capacitor-app.js)
-    if (f7.device.capacitor) {
-        capacitorApp.init(f7);
-    }
-    // Call F7 APIs here
-});
